@@ -1,2 +1,2 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<h1>Prydwen-like Codex</h1>
+<p>This demo showcases a sleek dark theme with character and lightcone codex, tier list and admin tools.</p>
