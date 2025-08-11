@@ -1,47 +1,62 @@
 <script lang="ts">
   import { user } from '$lib/store';
+  import { goto } from '$app/navigation';
   let { children } = $props();
 </script>
 
 <svelte:head>
   <style>
-    :global(body) {
-      background: #111;
-      color: #eee;
+    :global(html, body) {
       margin: 0;
-      font-family: system-ui, sans-serif;
+      font-family: 'Roboto', system-ui, sans-serif;
+      transition: background 0.3s, color 0.3s;
     }
     nav {
-      background: #222;
-      padding: 1rem;
+      padding: 1rem 2rem;
       display: flex;
-      gap: 1rem;
+      gap: 0.5rem;
+      animation: slideDown 0.4s ease;
     }
-    a {
-      color: #9cf;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+    nav button {
+      border-radius: 0.5rem;
     }
     main {
-      padding: 1rem;
+      padding: 2rem;
+      animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </svelte:head>
 
 <nav>
-  <a href="/">Home</a>
-  <a href="/characters">Characters</a>
-  <a href="/lightcones">Lightcones</a>
-  <a href="/tier">Tier List</a>
+  <button type="button" onclick={() => goto('/')}>Home</button>
+  <button type="button" onclick={() => goto('/characters')}>Characters</button>
+  <button type="button" onclick={() => goto('/lightcones')}>Lightcones</button>
+  <button type="button" onclick={() => goto('/tier')}>Tier List</button>
   {#if $user}
-    {#if $user.username === 'master'}
-      <a href="/admin">Admin</a>
+    {#if $user.username === 'admin'}
+      <button type="button" onclick={() => goto('/admin')}>Admin</button>
     {/if}
-    <a href="/login">Logout</a>
+    <button type="button" onclick={() => goto('/login')}>Logout</button>
   {:else}
-    <a href="/login">Login</a>
+    <button type="button" onclick={() => goto('/login')}>Login</button>
   {/if}
 </nav>
 
