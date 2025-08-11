@@ -18,7 +18,7 @@
   }
 </script>
 
-{#if $user && $user.username === 'master'}
+{#if $user && $user.username === 'admin'}
   <h1>Admin Panel</h1>
   <h2>Add Character</h2>
   <input placeholder="name" bind:value={charName} />
