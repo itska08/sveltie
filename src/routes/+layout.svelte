@@ -5,11 +5,13 @@
 
 <svelte:head>
   <style>
+bwidl1-codex/fix-deployment-error-for-idb-keyval-import
     :global(html, body) {
       background: #0d0d0d;
       color: #f5f5f5;
       margin: 0;
       font-family: 'Inter', system-ui, sans-serif;
+main
       transition: background 0.3s, color 0.3s;
     }
     nav {
@@ -23,7 +25,10 @@
     a {
       color: #9cc9ff;
       text-decoration: none;
+bwidl1-codex/fix-deployment-error-for-idb-keyval-import
       font-weight: 500;
+
+main
       transition: color 0.2s;
     }
     a:hover {
@@ -39,15 +44,20 @@
       border-radius: 4px;
       padding: 0.5rem;
       color: #f5f5f5;
+bwidl1-codex/fix-deployment-error-for-idb-keyval-import
       font-family: inherit;
+main
       transition: border-color 0.2s, transform 0.2s;
     }
     :global(input:focus, select:focus, button:hover) {
       border-color: #555;
     }
+bwidl1-codex/fix-deployment-error-for-idb-keyval-import
     :global(button) {
       cursor: pointer;
     }
+
+main
     :global(button:hover) {
       transform: translateY(-2px);
     }
