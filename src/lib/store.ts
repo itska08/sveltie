@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { get, set, del } from 'idb-keyval';
+import { browser } from '$app/environment';
 
 export interface User {
   username: string;
@@ -7,14 +7,18 @@ export interface User {
 
 export const user = writable<User | null>(null);
 
-get<User>('user').then((value) => {
-  if (value) user.set(value);
-});
+if (browser) {
+  import('idb-keyval').then(({ get, set, del }) => {
+    get<User>('user').then((value) => {
+      if (value) user.set(value);
+    });
 
-user.subscribe((value) => {
-  if (value) {
-    set('user', value);
-  } else {
-    del('user');
-  }
-});
+    user.subscribe((value) => {
+      if (value) {
+        set('user', value);
+      } else {
+        del('user');
+      }
+    });
+  });
+}

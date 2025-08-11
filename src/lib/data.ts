@@ -1,4 +1,4 @@
-import { get, set } from 'idb-keyval';
+import { browser } from '$app/environment';
 
 export interface Character {
   name: string;
@@ -12,21 +12,29 @@ export interface Lightcone {
 }
 
 export async function getCharacters(): Promise<Character[]> {
+  if (!browser) return [];
+  const { get } = await import('idb-keyval');
   return (await get<Character[]>('characters')) ?? [];
 }
 
 export async function addCharacter(c: Character) {
-  const list = await getCharacters();
+  if (!browser) return;
+  const { get, set } = await import('idb-keyval');
+  const list = (await get<Character[]>('characters')) ?? [];
   list.push(c);
   await set('characters', list);
 }
 
 export async function getLightcones(): Promise<Lightcone[]> {
+  if (!browser) return [];
+  const { get } = await import('idb-keyval');
   return (await get<Lightcone[]>('lightcones')) ?? [];
 }
 
 export async function addLightcone(c: Lightcone) {
-  const list = await getLightcones();
+  if (!browser) return;
+  const { get, set } = await import('idb-keyval');
+  const list = (await get<Lightcone[]>('lightcones')) ?? [];
   list.push(c);
   await set('lightcones', list);
 }
