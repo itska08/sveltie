@@ -1,12 +1,14 @@
 <script lang="ts">
   import { user } from '$lib/store';
-  import { get, set } from 'idb-keyval';
+  import { browser } from '$app/environment';
   let username = '';
   let password = '';
   let isNew = false;
   let message = '';
 
   async function submit() {
+    if (!browser) return;
+    const { get, set } = await import('idb-keyval');
     const accounts = (await get<Record<string, string>>('accounts')) ?? {};
     if (isNew) {
       accounts[username] = password;
